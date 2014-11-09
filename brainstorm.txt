@@ -1,0 +1,50 @@
+computer sets a code of four colors
+user submits a guess of four colors
+compare two sets of colors
+return input on whether a submitted color was in the right position, or
+  if it's just the correct color
+quit game at any time
+message them about their guess if formatted incorrectly
+time the game
+
+display an introductory message
+prompt the user for a guess
+display message about the user's guess
+
+user wins when both sets of color codes match
+
+classes:
+
+* code maker/checker
+ creates the color code
+ compares the user's color code
+ returns if it is a full, partial, or no match
+
+*timer
+ starts when the user enters their first color
+ ends when the correct code is guessed
+
+* display
+posts introductory message
+allows user to see rules
+asks user for guess
+displays feedback on their guess
+tells them when the game is over/reports on their results.
+
+
+
+the color sequence generator:
+colors = ["R", "G", "B", "Y"]
+sequence = []
+4.times.each do
+  new << array.shuffle.pop
+end
+
+
+
+
+
+
+
+code: needs to have four slots, with a color assigned to the position. sounds
+like a hash to me.
