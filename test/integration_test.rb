@@ -13,7 +13,7 @@ class IntegrationTest < MiniTest::Test
     # should create a sequence of four from for available colors.
     # do not have to use each of the colors.
     # test it's a different sequence each time
-    assert_equal 1, color_sequence #whatevs
+    assert_equal 1, color_sequence
   end
 
   def test_it_compares_color_sequence_to_players_sequence
@@ -27,13 +27,6 @@ class IntegrationTest < MiniTest::Test
     # checks for the correct player sequence
     # compares the computer's sequence to the player's
     # outputs a message
-
-    if player[0] == sequence[0]
-      display match for position and color
-    elseif player[0] == sequnce.any
-      display match for color
-    else
-      do not display any matches
   end
 
   def test_it_puts_the_game_on_a_timer
