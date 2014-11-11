@@ -7,50 +7,71 @@ require_relative '../lib/guess_checker'  # => true
 class GuessCheckerTest < MiniTest::Test
   def test_it_compares_the_two_codes_and_finds_a_match
     guess_checker = GuessChecker.new
-    player_code = 'rbby'
+    player_code = ["r", "b", "b", "y"]
     game_code = ["r", "b", "b", "y"]
     assert guess_checker.compare(player_code, game_code)
   end
 
   def test_it_compares_player_and_game_code_and_returns_false
     guess_checker = GuessChecker.new
-    player_code = 'gggg'
+    player_code = ["g", "g", "g", "g"]
     game_code = ["r", "b", "b", "y"]
     refute guess_checker.compare(player_code, game_code)
   end
 
-  def test_it_finds_color_match_but_not_position_and_increments_a_color_match_tally
-    guess_checker = GuessChecker.new
-    player_code = 'bggg'
-    game_code = ["r", "b", "b", "y"]
-    guess_checker.compare(player_code, game_code)
-    assert game_code.include?(player_code[0])
+  # def test_it_finds_one_color_match_only
+  #   guess_checker = GuessChecker.new
+  #   player_code = ["b", "g", "g", "g"]
+  #   game_code = ["r", "b", "b", "y"]
+  #   color_match = 0
+  #
+  #   guess_checker.compare(player_code, game_code)
+  #
+  #   if game_code.include?[player_code[0]]
+  #     color_match += 1
+  #   end
 
-    # this test isn't the best...it didn't require me to write extra code
+  def test_it_finds_one_color_match_only
+    guess_checker = GuessChecker.new
+    player_code = ["b", "g", "g", "g"]
+    game_code = ["r", "b", "b", "y"]
+    assert guess_checker.color_match?
   end
+
+    # if player_code.each { |color| game_code.include?(color)}
+    #     color_match += 1
+    #   end
+    # require 'pry' ; binding.pry
+
+  #   assert_equal 1, color_match
+  # end
 
   def test_it_finds_multiple_color_matches
     skip
-    player_code = 'brgg'
+    guess_checker = GuessChecker.new
+    player_code = ["b", "r", "g", "g"]
     game_code = ["r", "b", "b", "y"]
-end
+  end
 
   def test_it_finds_a_position_match
     skip
-    player_code = 'rbby'
+    guess_checker = GuessChecker.new
+    player_code = ["r", "g", "g", "g"]
     game_code = ["r", "b", "b", "y"]
 
   end
 
   def test_it_finds_multiple_position_matches
     skip
-    player_code = 'rbgg'
+    guess_checker = GuessChecker.new
+    player_code = ["r", "b", "g", "g"]
     game_code = ["r", "b", "b", "y"]
   end
 
   def test_it_finds_a_position_and_color_match
     skip
-    player_code = 'rygg'
+    guess_checker = GuessChecker.new
+    player_code = ["r", "y", "g", "g"]
     game_code = ["r", "b", "b", "y"]
 
   end

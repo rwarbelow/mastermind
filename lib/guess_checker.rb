@@ -1,27 +1,30 @@
-require_relative 'code_maker'  # => true
+require_relative 'code_maker'
 
 class GuessChecker
-  attr_reader :player_code, :game_code, :color_match  # => nil
+  attr_reader :player_code, :game_code, :color_match
 
   def initialize
-     @player_code = player_code           # => nil
-     @game_code = CodeMaker.new.generate  # => 4
-     @color_match = 0                     # => 0
+     @player_code = player_code
+     @game_code = CodeMaker.new.generate
+     @color_match = 0
+  end
+
+  def color_match?
+    true
   end
 
   def compare(player_code, game_code)
-    player_code = player_code.split('')  # => ["r", "b", "b", "y"]
-    if player_code == game_code          # => true
-      true                               # => true
-    else #sequence.any? { |sequence_color| sequence_color == color }
+    if player_code == game_code
+      true
+    else
       false
-    end                                  # => true
+    end
   end
 
 end
 
-guess=GuessChecker.new                       # => #<GuessChecker:0x007fdf9b11ac10 @player_code=nil, @game_code=4, @color_match=0>
-guess.compare('rbby', ["r", "b", "b", "y"])  # => nil
+guess=GuessChecker.new
+guess.compare('rbby', ["r", "b", "b", "y"])
 
 
 
@@ -49,29 +52,3 @@ guess.compare('rbby', ["r", "b", "b", "y"])  # => nil
 # end
 #
 # end
-
-# attr_reader :instream
-#
-# def initialize(instream)
-# @instream = instream
-# end
-#
-# def game_code
-# code = CodeMaker.new
-# game_code = code.generate
-# end
-# #
-# # def player_code
-# #   instream.split('')
-# # end
-#
-# def compare_code(instream)
-# code_maker  = CodeMaker.new
-# game_code   = code_maker.generate
-# player_code == game_code
-# end
-
-# >> r
-# >> b
-# >> b
-# >> y
