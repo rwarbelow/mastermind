@@ -16,4 +16,12 @@ class CodeMakerTest < MiniTest::Test
     @colors = %w(r g b y)
     assert @colors.include?(code_maker.code.sample)
   end
+
+  def test_it_returns_an_array
+    code_maker = CodeMaker.new
+    @colors = ["r", "r", "r", "r"]
+    assert_equal ["r", "r", "r", "r"], code_maker.generate
+    #this test doesnt work, but I created it because the return
+    # of my each loop was returning 4, not an array
+  end
 end

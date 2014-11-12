@@ -7,8 +7,11 @@ class CodeMaker
   end
 
   def generate
-    4.times.each do
-      @code << colors.shuffle.pop
+    4.times.map do
+      [] << colors.shuffle.pop
     end
   end
 end
+
+code = CodeMaker.new
+code.generate

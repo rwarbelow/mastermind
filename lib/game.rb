@@ -1,7 +1,13 @@
-require_relative 'messages'
+require_relative 'guess_checker'
 
 class Game
-    attr_reader :instream, :outstream, :messages, :turns, :player_code, :game_code, :command
+    attr_reader :instream,
+                :outstream,
+                :messages,
+                :turns,
+                :game_code,
+                :command,
+                :checker
 
   def initialize(instream, outstream, messages)
     @instream   = instream
@@ -10,16 +16,24 @@ class Game
     @turns      = 0
     @command    = ""
     @game_code  = CodeMaker.new
-    @checker    = Guess_Checker.new
   end
 
   def play
-    outstream.puts messages.intro
-    until win? || exit?
+    outstream.puts messages.game_intro
       outstream.puts messages.game_prompt
+      @game_code   = @game_code.generate
+      puts @game_code.join
       @command     = instream.gets.strip
       @player_code = command.split('')
+      @checker     = GuessChecker.new(@player_code, @game_code)
       process_game_turn
+    until win? || exit?
+      @command     = instream.gets.strip
+      @command     = instream.gets.strip
+      @player_code = command.split('')
+      @checker     = GuessChecker.new(@player_code, @game_code)
+      process_game_turn
+    end
   end
 
   def process_game_turn
@@ -32,16 +46,16 @@ class Game
       outstream.puts messages.too_short
     when too_long?
       outstream.puts messages.too_long
-    when invalid_letters?
-      outstream.puts messages.invalid_letters
+    # when invalid_letters?
+    #   outstream.puts messages.invalid_letters
     when no_matches?
       outstream.puts messages.no_matches
       add_turn
-      outstream.puts messages.turns
+      outstream.puts messages.turns(turns)
     when color_and_position_matches?
       outstream.puts messages.color_and_position_matches
       add_turn
-      outstream.puts messages.turns
+      outstream.puts messages.turns(turns)
     end
   end
 
@@ -50,27 +64,27 @@ class Game
   end
 
   def win?
-    game.compare == true
+    @checker.compare == true
   end
 
   def too_short?
-    player_code.length < 4
+    @player_code.length < 4
   end
 
   def too_long?
-    player_code.length > 4
+    @player_code.length > 4
   end
 
-  def invalid_letters?
-
-  end
+  # def invalid_letters?
+  #
+  # end
 
   def no_matches?
-    checker.player_match == 0 || checker.color_match == 0
+    @checker.position_match == 0 || @checker.color_match == 0
   end
 
   def color_and_position_matches?
-    checker.compare
+    @checker.compare
   end
 
   def add_turn

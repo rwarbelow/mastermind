@@ -1,11 +1,31 @@
+require_relative 'game'
+
 class Messages
   def intro
-    "Welcome to MasterMind. Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
-    # game_instructions
+    "Welcome to MasterMind."
+  end
+
+  def intro_command
+    "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+  end
+
+  def game_intro
+    "I have generated a sequence with four elements made up of: (r)ed,
+     (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
+  end
+
+  def game_instructions
+    "The object of the game is for you to determine the colors and positions of
+the colors in my 4-digit color code using the colors red, green, blue and
+yellow. Not all colors have to be used. Good luck!"
+  end
+
+  def not_a_valid_command
+    "Invalid command. Please select (p)lay, read the (i)nstructions, or (q)uit."
   end
 
   def game_prompt
-    "Enter your code to play..."
+    "What is your guess?"
   end
 
   def too_short
@@ -29,10 +49,18 @@ class Messages
   end
 
   def color_and_position_matches
-    "Your code contains #{:position} correct positions and #{:color} correct colors."
+    "Your code contains #{@position} correct positions and #{@color} correct colors."
+  end
+
+  def turns(turns)
+    if turns == 1
+      "You have taken #{turns} turn."
+    else
+      "You have taken #{turns} turns."
+    end
   end
 
   def exit
-    "Bye."
+    "Exiting Mastermind."
   end
 end
