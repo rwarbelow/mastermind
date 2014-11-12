@@ -1,30 +1,31 @@
 require_relative 'code_maker'
 
 class GuessChecker
-  attr_reader :player_code, :game_code, :color_match
+  attr_reader :player_code, :game_code
 
-  def initialize
+  def initialize(player_code, game_code)
      @player_code = player_code
-     @game_code = CodeMaker.new.generate
-     @color_match = 0
+     @game_code = game_code
   end
 
-  def color_match?
-    true
+  def color_match
+    matches = player_code.count { |color| game_code.include?(color) }
+    matches - position_matc
   end
 
-  def compare(player_code, game_code)
+  def position_match
+    player_code.zip(game_code).count { |player, game| player == game }
+  end
+
+  def compare
     if player_code == game_code
       true
     else
-      false
+      result = { :color => self.color_match, :position => self.position_match }
     end
   end
 
 end
-
-guess=GuessChecker.new
-guess.compare('rbby', ["r", "b", "b", "y"])
 
 
 

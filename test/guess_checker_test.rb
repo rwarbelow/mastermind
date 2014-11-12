@@ -6,18 +6,59 @@ require_relative '../lib/guess_checker'  # => true
 
 class GuessCheckerTest < MiniTest::Test
   def test_it_compares_the_two_codes_and_finds_a_match
-    guess_checker = GuessChecker.new
-    player_code = ["r", "b", "b", "y"]
-    game_code = ["r", "b", "b", "y"]
-    assert guess_checker.compare(player_code, game_code)
+    player_code   = ["r", "b", "b", "y"]
+    game_code     = ["r", "b", "b", "y"]
+    guess_checker = GuessChecker.new(player_code, game_code)
+    assert guess_checker.compare
   end
 
-  def test_it_compares_player_and_game_code_and_returns_false
-    guess_checker = GuessChecker.new
-    player_code = ["g", "g", "g", "g"]
-    game_code = ["r", "b", "b", "y"]
-    refute guess_checker.compare(player_code, game_code)
+  def test_it_compares_player_and_game_code_and_does_not_find_match
+      player_code = ["g", "g", "g", "g"]
+      game_code   = ["r", "b", "b", "y"]
+    guess_checker = GuessChecker.new(player_code, game_code)
+    refute player_code == game_code
+    # refute guess_checker.compare
   end
+
+
+  def test_it_finds_one_color_match_only
+      player_code = ["b", "g", "g", "g"]
+      game_code   = ["r", "b", "b", "y"]
+    guess_checker = GuessChecker.new(player_code, game_code)
+    assert_equal 1, guess_checker.color_match
+  end
+
+  def test_it_finds_multiple_color_matches
+      player_code = ["b", "r", "g", "g"]
+      game_code   = ["r", "b", "b", "y"]
+    guess_checker = GuessChecker.new(player_code, game_code)
+    assert_equal 2, guess_checker.color_match
+  end
+
+  def test_it_finds_a_position_match
+      player_code = ["r", "g", "g", "g"]
+      game_code   = ["r", "b", "b", "y"]
+    guess_checker = GuessChecker.new(player_code, game_code)
+    assert 1, guess_checker.position_match
+  end
+
+  def test_it_finds_multiple_position_matches
+      player_code = ["r", "b", "b", "g"]
+      game_code   = ["r", "b", "b", "y"]
+    guess_checker = GuessChecker.new(player_code, game_code)
+    assert 3, guess_checker.position_match
+  end
+
+  def test_it_finds_a_position_and_color_match_and_creates_a_hash
+      player_code = ["g", "g", "r", "y"]
+      game_code   = ["r", "b", "b", "y"]
+    guess_checker = GuessChecker.new(player_code, game_code)
+    assert_equal hash = {color: 1, position: 1}, guess_checker.compare
+  end
+
+end
+
+
 
   # def test_it_finds_one_color_match_only
   #   guess_checker = GuessChecker.new
@@ -30,56 +71,6 @@ class GuessCheckerTest < MiniTest::Test
   #   if game_code.include?[player_code[0]]
   #     color_match += 1
   #   end
-
-  def test_it_finds_one_color_match_only
-    guess_checker = GuessChecker.new
-    player_code = ["b", "g", "g", "g"]
-    game_code = ["r", "b", "b", "y"]
-    assert guess_checker.color_match?
-  end
-
-    # if player_code.each { |color| game_code.include?(color)}
-    #     color_match += 1
-    #   end
-    # require 'pry' ; binding.pry
-
-  #   assert_equal 1, color_match
-  # end
-
-  def test_it_finds_multiple_color_matches
-    skip
-    guess_checker = GuessChecker.new
-    player_code = ["b", "r", "g", "g"]
-    game_code = ["r", "b", "b", "y"]
-  end
-
-  def test_it_finds_a_position_match
-    skip
-    guess_checker = GuessChecker.new
-    player_code = ["r", "g", "g", "g"]
-    game_code = ["r", "b", "b", "y"]
-
-  end
-
-  def test_it_finds_multiple_position_matches
-    skip
-    guess_checker = GuessChecker.new
-    player_code = ["r", "b", "g", "g"]
-    game_code = ["r", "b", "b", "y"]
-  end
-
-  def test_it_finds_a_position_and_color_match
-    skip
-    guess_checker = GuessChecker.new
-    player_code = ["r", "y", "g", "g"]
-    game_code = ["r", "b", "b", "y"]
-
-  end
-
-end
-
-
-
 
 
 
