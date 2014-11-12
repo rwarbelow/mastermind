@@ -42,21 +42,7 @@ class GameTest < MiniTest::Test
     skip
   end
 
-  def test_it_gives_feedback_for_a_guess_without_matches
-    skip
-  end
 
-  def test_it_gives_feedback_for_a_guess_with_position_matches_only
-    skip
-  end
-
-  def test_it_gives_feedback_for_a_guess_with_color_matches_only
-    skip
-  end
-
-  def test_it_gives_feedback_for_a_guess_with_both_color_and_position_matches
-    skip
-  end
 
   def test_the_game_exits
 
