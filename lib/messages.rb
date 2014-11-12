@@ -4,6 +4,10 @@ class Messages
     # game_instructions
   end
 
+  def game_prompt
+    "Enter your code to play..."
+  end
+
   def too_short
     "Your code is too short. Please enter a 4-digit code."
   end
@@ -12,7 +16,7 @@ class Messages
     "Your code is too long. Please enter a 4-digit code."
   end
 
-  def wrong_letters
+  def invalid_letters
     "Your code contains invalid letter. Please use a combination of the letters r, g, b or y."
   end
 
