@@ -10,7 +10,7 @@ class GuessChecker
 
   def color_match
     matches = player_code.count { |color| game_code.include?(color) }
-    matches - position_matc
+    matches - position_match
   end
 
   def position_match

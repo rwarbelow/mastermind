@@ -1,6 +1,6 @@
 class Messages
   def intro
-    "Welcome to MasterMind. Would you like to play to the death?"
+    "Welcome to MasterMind. Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
     # game_instructions
   end
 
