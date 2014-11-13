@@ -23,4 +23,10 @@ class TestTimer < MiniTest::Test
     assert_equal "00 minutes 02 seconds", timer.clock
   end
 
+  def test_it_ends_after_30_seconds
+    timer = Timer.new
+    timer.start
+    asert_equal ??, time.run
+  end
+
 end

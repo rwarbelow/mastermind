@@ -27,16 +27,17 @@ class Game
   def play
     outstream.puts messages.game_intro
       @game_code   = @game_code.generate
-      puts @game_code.join
-    begin
+      # puts @game_code.join
       @timer.start
+    begin
       outstream.puts messages.game_prompt
       @command     = instream.gets.strip
+      @timer.check
       @player_code = command.split('')
       @validator   = ValidateGuess.new(@player_code)
       @checker     = GuessChecker.new(@player_code, @game_code)
       process_game_turn
-    end until win? || exit?
+    end until win? || exit? || timeout?
   end
 
   def process_game_turn
@@ -47,6 +48,8 @@ class Game
       @time = @timer.clock
       outstream.puts messages.win
       outstream.puts messages.clock(time)
+    when timeout?
+      outstream.puts messages.lose
     when too_short?
       outstream.puts messages.too_short
     when too_long?
@@ -70,7 +73,10 @@ class Game
 
   def win?
     checker.compare == true
+  end
 
+  def timeout?
+    @timer.check > "01:00"
   end
 
   def too_short?

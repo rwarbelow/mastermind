@@ -16,9 +16,10 @@ class Messages
   end
 
   def game_instructions
-    "The object of the game is for you to determine the colors and positions of
-the colors in my 4-letter color code using the colors (r)ed, (g)reen, (b)lue and
-(y)ellow. Not all colors have to be used. If you lose, you will be mauled by a lion. Good luck!"
+    "The object of the game is to determine the colors and positions of
+the colors in the secret 4-letter color code using the colors (r)ed, (g)reen, (b)lue and
+(y)ellow. Not all colors have to be used. You have 5 minutes to guess correctly.If
+you lose, you will be mauled by a lion. Good luck!"
   end
 
   def not_a_valid_command
@@ -74,6 +75,19 @@ the colors in my 4-letter color code using the colors (r)ed, (g)reen, (b)lue and
  ,AMMMMMMMMMMMMMMMMMMMMMA   AMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 AMMMMMMMMMMMMMMMMMMMMMMMMAaAMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 You escape this time! You win!
+    EOF
+  end
+
+  def lose
+    <<-EOF
+    ██████╗   █████╗  ██╗    ██╗ ██████╗
+    ██╔══██╗ ██╔══██╗ ██║    ██║ ██╔══██╗
+    ██████╔╝ ███████║ ██║ █╗ ██║ ██████╔╝
+    ██╔══██╗ ██╔══██║ ██║███╗██║ ██╔══██╗
+    ██║  ██║ ██║  ██║ ╚███╔███╔╝ ██║  ██║
+    ╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚══╝╚══╝  ╚═╝  ╚═╝
+
+Get in the lion's belly! Time expired. You lose.
     EOF
   end
 
