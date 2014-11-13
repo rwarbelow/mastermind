@@ -3,7 +3,7 @@ require_relative 'guess_checker'
 
 class Messages
   def intro
-    "Welcome to Mastermind."
+    "Welcome to Mastermind -- Gladiator Edition."
   end
 
   def intro_command
@@ -12,13 +12,14 @@ class Messages
 
   def game_intro
     "I have generated a sequence with four elements made up of: (r)ed,
-     (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game."
+     (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game. You have
+     one minute to guess the code or the lion will eat you."
   end
 
   def game_instructions
     "The object of the game is to determine the colors and positions of
 the colors in the secret 4-letter color code using the colors (r)ed, (g)reen, (b)lue and
-(y)ellow. Not all colors have to be used. You have 5 minutes to guess correctly.If
+(y)ellow. Not all colors have to be used. You have 1 minute to guess correctly.If
 you lose, you will be mauled by a lion. Good luck!"
   end
 
@@ -96,7 +97,15 @@ Get in the lion's belly! Time expired. You lose.
   end
 
   def color_and_position_matches(color_match, position_match)
-    "Your code contains #{position_match} correct positions and #{color_match} correct colors."
+    if position_match == 1 && color_match > 1
+      "Your code contains #{position_match} correct position and #{color_match} correct colors."
+    elsif position_match > 1 && color_match > 1
+      "Your code contains #{position_match} correct positions and #{color_match} correct colors."
+    elsif position_match > 1 && color_match == 1
+      "Your code contains #{position_match} correct positions and #{color_match} correct color."
+    else
+      "Your code contains #{position_match} correct position and #{color_match} correct color."
+    end
   end
 
   def turns(turns)
