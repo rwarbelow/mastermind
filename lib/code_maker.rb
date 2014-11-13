@@ -1,3 +1,5 @@
+require 'pry'
+
 class CodeMaker
   attr_reader :colors, :code
 
@@ -7,9 +9,11 @@ class CodeMaker
   end
 
   def generate
+    @code = []
     4.times.map do
-      [] << colors.shuffle.pop
+      @code << colors.shuffle.pop
     end
+    @code.flatten
   end
 end
 

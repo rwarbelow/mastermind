@@ -20,20 +20,15 @@ class Game
 
   def play
     outstream.puts messages.game_intro
-      outstream.puts messages.game_prompt
       @game_code   = @game_code.generate
       puts @game_code.join
+    begin
+      outstream.puts messages.game_prompt
       @command     = instream.gets.strip
       @player_code = command.split('')
       @checker     = GuessChecker.new(@player_code, @game_code)
       process_game_turn
-    until win? || exit?
-      @command     = instream.gets.strip
-      @command     = instream.gets.strip
-      @player_code = command.split('')
-      @checker     = GuessChecker.new(@player_code, @game_code)
-      process_game_turn
-    end
+    end until win? || exit?
   end
 
   def process_game_turn
@@ -41,7 +36,7 @@ class Game
     when exit?
       outstream.puts messages.exit
     when win?
-      oustream.puts messages.win
+      outstream.puts messages.win
     when too_short?
       outstream.puts messages.too_short
     when too_long?
@@ -53,7 +48,7 @@ class Game
       add_turn
       outstream.puts messages.turns(turns)
     when color_and_position_matches?
-      outstream.puts messages.color_and_position_matches
+      outstream.puts messages.color_and_position_matches(checker.color_match, checker.position_match)
       add_turn
       outstream.puts messages.turns(turns)
     end
@@ -65,6 +60,7 @@ class Game
 
   def win?
     @checker.compare == true
+
   end
 
   def too_short?
@@ -80,7 +76,8 @@ class Game
   # end
 
   def no_matches?
-    @checker.position_match == 0 || @checker.color_match == 0
+    @checker.position_match == 0 && @checker.color_match == 0
+    #@checker.result[:color] == 0 || @checker.result[:position] == 0
   end
 
   def color_and_position_matches?

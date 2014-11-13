@@ -1,4 +1,5 @@
 require_relative 'game'
+require_relative 'guess_checker'
 
 class Messages
   def intro
@@ -48,8 +49,8 @@ yellow. Not all colors have to be used. Good luck!"
     "Your guess contains no color or position matches."
   end
 
-  def color_and_position_matches
-    "Your code contains #{@position} correct positions and #{@color} correct colors."
+  def color_and_position_matches(color_match, position_match)
+    "Your code contains #{position_match} correct positions and #{color_match} correct colors."
   end
 
   def turns(turns)

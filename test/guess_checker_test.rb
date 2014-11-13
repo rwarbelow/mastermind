@@ -56,6 +56,13 @@ class GuessCheckerTest < MiniTest::Test
     assert_equal hash = {color: 1, position: 1}, guess_checker.compare
   end
 
+  def test_it_doesnt_count_a_color_match_twice
+    player_code = ["g", "g", "b", "r"]
+    game_code   = ["r", "b", "b", "y"]
+    guess_checker = GuessChecker.new(player_code, game_code)
+    assert_equal hash = {color: 1, position: 0}, guess_checker.compare
+  end
+
 end
 
 
