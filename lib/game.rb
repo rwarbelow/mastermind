@@ -62,7 +62,7 @@ class Game
   end
 
   def win?
-    @checker.compare == true
+    checker.compare == true
 
   end
 
@@ -75,16 +75,16 @@ class Game
   end
 
   def invalid_letters?
-    @validator.verify == false
+    validator.verify == false
   end
 
   def no_matches?
-    @checker.position_match == 0 && @checker.color_match == 0
+    checker.position_match == 0 && checker.color_match == 0
     #@checker.result[:color] == 0 || @checker.result[:position] == 0
   end
 
   def color_and_position_matches?
-    @checker.compare
+    checker.compare
   end
 
   def add_turn

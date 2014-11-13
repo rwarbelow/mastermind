@@ -43,7 +43,6 @@ yellow. Not all colors have to be used. Good luck!"
 
   def win
     <<-EOF
-    Mr. Potato Head says, "You win!""
                                          .:::::::::.
                                   .:::::::::::::::.
                                  :::::::::::::::::::
@@ -90,6 +89,7 @@ J$$                J" ,','  ;    , ,. . . `"?$$$$$$$$$$$$$$ $$$$$$$$$$$$c,
                   ''{;;......;;;;-'`   `'!!!!!!!!!!-- ,;!!'`
                        ```````        !!;,,.````.,,;{!!'`
                                        ```''''''''''``
+    Mr. Potato Head says, "You Win!!!!"
     EOF
   end
 
@@ -110,6 +110,7 @@ J$$                J" ,','  ;    , ,. . . `"?$$$$$$$$$$$$$$ $$$$$$$$$$$$c,
   end
 
   def exit
-    "Exiting Mastermind."
+    puts "Exiting Mastermind."
+    abort
   end
 end

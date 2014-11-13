@@ -53,14 +53,14 @@ class GuessCheckerTest < MiniTest::Test
       player_code = ["g", "g", "r", "y"]
       game_code   = ["r", "b", "b", "y"]
     guess_checker = GuessChecker.new(player_code, game_code)
-    assert_equal hash = {color: 1, position: 1}, guess_checker.compare
+    assert_equal hash = {color: 2, position: 1}, guess_checker.compare
   end
 
   def test_it_doesnt_count_a_color_match_twice
-    player_code = ["g", "g", "b", "r"]
+    player_code = ["g", "r", "r", "r"]
     game_code   = ["r", "b", "b", "y"]
     guess_checker = GuessChecker.new(player_code, game_code)
-    assert_equal hash = {color: 1, position: 0}, guess_checker.compare
+    assert_equal 1, guess_checker.color_match
   end
 
 end
