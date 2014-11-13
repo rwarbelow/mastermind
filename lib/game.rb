@@ -1,4 +1,5 @@
 require_relative 'guess_checker'
+require_relative 'validate_guess'
 
 class Game
     attr_reader :instream,
@@ -7,7 +8,8 @@ class Game
                 :turns,
                 :game_code,
                 :command,
-                :checker
+                :checker,
+                :validator
 
   def initialize(instream, outstream, messages)
     @instream   = instream
@@ -26,6 +28,7 @@ class Game
       outstream.puts messages.game_prompt
       @command     = instream.gets.strip
       @player_code = command.split('')
+      @validator   = ValidateGuess.new(@player_code)
       @checker     = GuessChecker.new(@player_code, @game_code)
       process_game_turn
     end until win? || exit?
@@ -41,8 +44,8 @@ class Game
       outstream.puts messages.too_short
     when too_long?
       outstream.puts messages.too_long
-    # when invalid_letters?
-    #   outstream.puts messages.invalid_letters
+    when invalid_letters?
+      outstream.puts messages.invalid_letters
     when no_matches?
       outstream.puts messages.no_matches
       add_turn
@@ -71,9 +74,9 @@ class Game
     @player_code.length > 4
   end
 
-  # def invalid_letters?
-  #
-  # end
+  def invalid_letters?
+    @validator.verify == false
+  end
 
   def no_matches?
     @checker.position_match == 0 && @checker.color_match == 0

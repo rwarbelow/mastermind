@@ -16,6 +16,3 @@ class CodeMaker
     @code.flatten
   end
 end
-
-code = CodeMaker.new
-code.generate

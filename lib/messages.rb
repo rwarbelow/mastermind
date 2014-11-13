@@ -3,7 +3,7 @@ require_relative 'guess_checker'
 
 class Messages
   def intro
-    "Welcome to MasterMind."
+    "Welcome to Mastermind."
   end
 
   def intro_command
@@ -30,19 +30,67 @@ yellow. Not all colors have to be used. Good luck!"
   end
 
   def too_short
-    "Your code is too short. Please enter a 4-digit code."
+    "Your code is too short. Please enter a 4-letter code using r, g, b and y."
   end
 
   def too_long
-    "Your code is too long. Please enter a 4-digit code."
+    "Your code is too long. Please enter a 4-letter code using r, g, b and y."
   end
 
   def invalid_letters
-    "Your code contains invalid letter. Please use a combination of the letters r, g, b or y."
+    "Your code contains invalid letters. Please use a combination of the letters r, g, b and y."
   end
 
   def win
-    "You guessed the code! You win!"
+    <<-EOF
+    Mr. Potato Head says, "You win!""
+                                         .:::::::::.
+                                  .:::::::::::::::.
+                                 :::::::::::::::::::
+                                :::::::::::::::::::::
+                             :  `:::::::::::::::::::::
+                            :: >. `:::::::::::::::'''  .::
+                            :: `{C>,..````````...   .::''
+                            `:::..``{{{CCC>>>''..:::''.
+                   .,c$$h.    `'::::::.....:::''''.,c$$L
+                  J$$$$$.?. ,d$=  `````.,   .zcc$$$$$$$$.
+                ,$$$$$$$F."4P".:`:: ,$$".:::. "$$$$$$$$$h   ,cc,
+               ,$$$$$P".,P." '',c `,d$$ `'``':.`$$$$$$$$$h ="3$$c.
+              .$$$$$F $$" dc -?""? ?$$',c$$c  ` ?$$$$$$$$F, d$$$$h.
+              J$$$$$$ $F ,$',""$$h.?$',,,,."" . `$$$$$$$$ d 3$$$$$$.
+              3$$$$$P $F $$    ?$$'J',$" `$$c  $$$$$$$$$P $h "$$$$$$
+               ?C'.,c$P $$$    J$$ J $F   $$$h $$$$$$$$$' $$$ $$$$$$h
+                `??""  ,$$$ h,c$$F.$ $h, ,$$$',$$$$$$$$$c,`$P.$$$$$$$
+                      ,$$$$c`??"",c, "$$$$$P',$$$$$$$$$$$h ?L'$$$$$$P
+                      $$$$$$$F zd$$$h  """',d$$$$$$$$$$$$$h`?.`??$$P'
+                     J$$$$P",c$$$$$$$h."$$$$$$$$$$$$$$$$$$$h. `??"'
+     ,cd$$$$$$$$$$h J$$$$",J$$$$$$$$$$$c ?$$$$$$$$$$$$$$$$$$$
+   ,$$???????$$$$$F.$$$$$ $$$$$$$$$$$$$$h`$$$$$$$$$$$$$$$$$$$h
+  J$P"        `""" J$$$$$c`$$$$$$$$$$$$$F,$$$$$$$$$$$$$$$$$P"'
+ d$"               J$??".  `??$$$$?????" $$$$$$$$$$$$$$$$$$ J$$$$$hcc,.
+J$$                J" ,','  ;    , ,. . . `"?$$$$$$$$$$$$$$ $$$$$$$$$$$$c,
+3$$                J ' > .{! ;! ;!;'!> - `!.  "?$$$$$$$$$$$.'$P??""""""?$$h
+`$P",nmn        .   c ' ;!! ;!! !!! '!> !; {!.`;`$$$???$$$$$c,           ?$$
+ ? uMMP ,nmnmdMMM'  3$c, `  ''' {!!''!!> !> `' ,c$$F nx.?$$$$$            $$
+  dMM",dMMMMMMP"'   `$$$h.`  ,____,=  `. ' ,ccc$$$$h MMMx."??"           z$$
+  MP nMMMMMMMM,      ?$$$$.`\ """"" ,-' .d$$$$$$$$$$c )MMMMMn.  ..     ,c$$P
+  " =MMMMMMMMMMMbm,   ?$$$$h.``````',c$$$$$$$$?????"",dMMMMMMMb;MMr .z$$$P"
+     "MMMMMMMMMMMMP'   ?$$$$$$$$$$$$$$$$$$$$$ nmMMMMMMMMMMMMMMP{MMM ?$$P"
+      `MMMMMMM          "$$$$$$$$$$$$$$$$$$$$."4MMMMMMMMMMMMMMb`MMM.`"
+       MM4MMMMx           "??$$$$$$$$$$$$$$$$$ccc= ,MMMMMMMMMMM "MM
+       4Mr "4MMr               ""?????????????"",nmMMMMMMMMMMMMP  "
+       `M    `"                $|c             4MMMPPP4MMMMMMP
+                               $|$              "      MMMM"
+                               $|$              ;!;   dMMP'
+                           ,,, "|"              ;' {! P" ;{!
+                      . . .  ...  -          `" , ;,,. -'!!!.
+                     ''' '.;;;;;.         ,!' ." `-._``--..`'
+                    ;;;;;..```..;;;{>   ''- ...;;;.   `~- ' ;;
+                  .`''!!!!!!!!''''`.;; ;;;;;;..````''-;' ,;!!'
+                  ''{;;......;;;;-'`   `'!!!!!!!!!!-- ,;!!'`
+                       ```````        !!;,,.````.,,;{!!'`
+                                       ```''''''''''``
+    EOF
   end
 
   def no_matches
