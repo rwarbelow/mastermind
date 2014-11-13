@@ -1,5 +1,6 @@
 require_relative 'guess_checker'
 require_relative 'validate_guess'
+require_relative 'timer'
 
 class Game
     attr_reader :instream,
@@ -9,7 +10,8 @@ class Game
                 :game_code,
                 :command,
                 :checker,
-                :validator
+                :validator,
+                :time
 
   def initialize(instream, outstream, messages)
     @instream   = instream
@@ -18,6 +20,8 @@ class Game
     @turns      = 0
     @command    = ""
     @game_code  = CodeMaker.new
+    @timer      = Timer.new
+    @time       = ""
   end
 
   def play
@@ -25,6 +29,7 @@ class Game
       @game_code   = @game_code.generate
       puts @game_code.join
     begin
+      @timer.start
       outstream.puts messages.game_prompt
       @command     = instream.gets.strip
       @player_code = command.split('')
@@ -39,7 +44,9 @@ class Game
     when exit?
       outstream.puts messages.exit
     when win?
+      @time = @timer.clock
       outstream.puts messages.win
+      outstream.puts messages.clock(time)
     when too_short?
       outstream.puts messages.too_short
     when too_long?
