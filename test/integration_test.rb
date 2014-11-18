@@ -1,6 +1,4 @@
-gem 'minitest'
-require 'minitest/autorun'
-require 'minitest/pride'
+require_relative 'test_helper'
 require_relative '../lib/game'
 
 class IntegrationTest < MiniTest::Test
@@ -18,11 +16,6 @@ class IntegrationTest < MiniTest::Test
 
   def test_it_compares_color_sequence_to_players_sequence
     skip
-
-    compare three types of guesses:
-      one with no matches
-      one with a color match and a position match
-      one with all matches
 
     # checks for the correct player sequence
     # compares the computer's sequence to the player's

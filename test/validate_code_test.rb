@@ -1,8 +1,5 @@
-gem 'minitest'                           # => true
-require 'minitest/autorun'               # => true
-require 'minitest/pride'                 # => true
+require_relative 'test_helper'
 require_relative '../lib/validate_guess'
-
 class TestValidateCode < MiniTest::Test
   def test_it_validates_code_with_letters_r_g_b_and_y
     player_code   = ["r", "b", "b", "y"]

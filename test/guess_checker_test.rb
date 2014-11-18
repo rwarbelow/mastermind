@@ -1,6 +1,4 @@
-gem 'minitest'                           # => true
-require 'minitest/autorun'               # => true
-require 'minitest/pride'                 # => true
+require_relative 'test_helper'
 require_relative '../lib/guess_checker'  # => true
 
 

@@ -1,6 +1,4 @@
-gem 'minitest'                      # => true
-require 'minitest/autorun'          # => true
-require 'minitest/pride'            # => true
+require_relative 'test_helper'
 require_relative '../lib/messages'  # => true
 require_relative '../lib/game'      # => false
 
